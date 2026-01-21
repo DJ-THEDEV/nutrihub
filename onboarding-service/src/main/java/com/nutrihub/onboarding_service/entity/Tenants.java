@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,4 +27,12 @@ public class Tenants {
     private Date createdAt;
 
     private Date updatedAt;
+
+    // 🔹 Tenant → Documents (OWNERSHIP)
+    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TenantDocuments> documents;
+
+    // 🔹 Tenant → Subscriptions (OWNERSHIP)
+    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
+    private Subscriptions subscriptions;
 }

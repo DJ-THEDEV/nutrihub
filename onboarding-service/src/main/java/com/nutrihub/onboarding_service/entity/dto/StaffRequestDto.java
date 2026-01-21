@@ -4,4 +4,8 @@ import lombok.Data;
 
 @Data
 public class StaffRequestDto {
+
+    private String emailId;
+
+    private Long tenantId;
 }

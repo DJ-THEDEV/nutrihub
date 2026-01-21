@@ -1,14 +1,13 @@
 package com.nutrihub.onboarding_service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,10 +15,12 @@ import java.util.Date;
 @Builder
 public class Subscriptions {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long tenantId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant_id", nullable = false)
+    private Tenants tenant;
 
     private String plan;
 
@@ -30,5 +31,9 @@ public class Subscriptions {
     private Date validTill;
 
     private Date createdAt;
+
+
+
+
 
 }

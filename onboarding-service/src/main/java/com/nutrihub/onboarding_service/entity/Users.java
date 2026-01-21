@@ -1,14 +1,12 @@
 package com.nutrihub.onboarding_service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,7 +27,15 @@ public class Users {
     private String contactNo;
     private String status;
 
-    private String tenantId;
+    // 🔹 OPTIONAL tenant mapping
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant_id")
+    private Tenants tenant;
+
+
+    // 🔹 Tenant → Documents (OWNERSHIP)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Addresses> documents ;
 
 
 
