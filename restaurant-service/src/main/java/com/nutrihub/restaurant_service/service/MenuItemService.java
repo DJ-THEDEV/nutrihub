@@ -4,11 +4,16 @@ import com.nutrihub.restaurant_service.entity.MenuItemReview;
 import com.nutrihub.restaurant_service.entity.MenuItems;
 import com.nutrihub.restaurant_service.entity.dto.MenuItemReviewRequestDto;
 import com.nutrihub.restaurant_service.entity.dto.MenuItemsRequestDto;
+import com.nutrihub.restaurant_service.entity.dto.MenuItemsSearchRequestDto;
+import com.nutrihub.restaurant_service.entity.dto.MenuItemsSearchResponseDto;
 import com.nutrihub.restaurant_service.repo.MenuItemReviewRepo;
 import com.nutrihub.restaurant_service.repo.MenuItemsRepo;
+import com.nutrihub.restaurant_service.specification.MenuItemsSpecification;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,4 +69,26 @@ public class MenuItemService {
         return "saved successfully";
 
     }
+
+    public  Page<MenuItemsSearchResponseDto> searchMenuItems(MenuItemsSearchRequestDto menuItemsSearchRequestDto, Pageable pageable) {
+        Specification<MenuItems> spec = MenuItemsSpecification.buildMenuItemsSearchSpecification(menuItemsSearchRequestDto);
+         Page<MenuItems> menuItemsList=menuItemsRepo.findAll(spec,pageable);
+
+         return menuItemsList.map(this::toResponseDto);
+
+
+
+    }
+
+    private MenuItemsSearchResponseDto toResponseDto(MenuItems menuItem) {
+
+        return MenuItemsSearchResponseDto.builder()
+                .id(menuItem.getId())
+                .name(menuItem.getName())
+                .itemType(menuItem.getItemType())
+                .isVeg(menuItem.getIsVeg())
+                .price(menuItem.getPrice())
+                .build();
+    }
+
 }

@@ -26,7 +26,7 @@ public class MenuItems {
 
     private String itemType;
 
-    private Boolean is_veg;
+    private Boolean isVeg;
 
     private Double price;
 
