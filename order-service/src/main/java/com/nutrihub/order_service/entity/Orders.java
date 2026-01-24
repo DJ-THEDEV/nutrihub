@@ -1,14 +1,12 @@
 package com.nutrihub.order_service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,4 +33,10 @@ public class Orders {
     private String paymentStatus;
 
   private LocalDateTime placedAt;
+
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<OrderItems> orderItemsList;
+
+    @OneToOne(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
+    private PaymentInformation paymentInformation;
 }
