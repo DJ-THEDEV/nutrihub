@@ -11,6 +11,8 @@ import java.util.List;
 @Data
 public class CartRequestDto {
 
+    private Long id;
+
     private Long userId;
 
     private Long tenantId;

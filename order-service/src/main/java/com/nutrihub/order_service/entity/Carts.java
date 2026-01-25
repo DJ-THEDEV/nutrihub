@@ -1,9 +1,7 @@
 package com.nutrihub.order_service.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,6 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Carts {
 
     @Id
@@ -22,9 +22,6 @@ public class Carts {
 
     private Long tenantId;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<CartItems> cartItemsList;
