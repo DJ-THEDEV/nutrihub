@@ -18,11 +18,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartService {
 
-    private CartItemsRepository cartItemsRepository;
+    private final CartItemsRepository cartItemsRepository;
 
-    private CartsRepository cartsRepository;
+    private final CartsRepository cartsRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     public  String addOrUpdateItemToCart(CartRequestDto cartRequestDto) {
       saveCart(cartRequestDto);

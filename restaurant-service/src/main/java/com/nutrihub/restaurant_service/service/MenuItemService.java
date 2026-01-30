@@ -22,11 +22,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MenuItemService {
 
-    private MenuItemsRepo menuItemsRepo;
+    private final MenuItemsRepo menuItemsRepo;
 
-    private MenuItemReviewRepo menuItemReviewRepo;
+    private final MenuItemReviewRepo menuItemReviewRepo;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     public  String addOrUpdateMenuItem(MenuItemsRequestDto menuItemsRequestDto) {
         List<MenuItemReview> menuItemReview = null;

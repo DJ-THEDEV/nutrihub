@@ -28,14 +28,14 @@ import java.util.stream.IntStream;
 @RequiredArgsConstructor
 public class OnboardingService {
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Value("${tenant.documentPath}")
     private String documentPath;
 
-    private TenantsRepo tenantsRepo;
+    private final TenantsRepo tenantsRepo;
 
-    private UsersRepo usersRepo;
+    private final UsersRepo usersRepo;
 
     @Transactional
     public String createTenantAccount(TenantRequestDto dto, MultipartFile[] files) {

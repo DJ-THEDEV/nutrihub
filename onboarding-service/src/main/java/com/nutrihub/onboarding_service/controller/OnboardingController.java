@@ -1,6 +1,5 @@
 package com.nutrihub.onboarding_service.controller;
 
-import com.nutrihub.onboarding_service.entity.dto.CustomerRequestDto;
 import com.nutrihub.onboarding_service.entity.dto.StaffRequestDto;
 import com.nutrihub.onboarding_service.entity.dto.TenantRequestDto;
 import com.nutrihub.onboarding_service.entity.dto.UsersRequestDto;
